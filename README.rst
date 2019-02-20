@@ -1,23 +1,16 @@
 UltraJSON
 =============
-.. image:: https://travis-ci.org/esnme/ultrajson.svg?branch=master
-    :target: https://travis-ci.org/esnme/ultrajson
+.. image:: https://travis-ci.org/segfault/ultrajson.svg?branch=master
+    :alt: Travis CI build status
+    :target: https://travis-ci.org/segfault/ultrajson
 
-UltraJSON is an ultra fast JSON encoder and decoder written in pure C with bindings for Python 2.5+ and 3.
-
-For a more painless day to day C/C++ JSON decoder experience please checkout ujson4c_, based on UltraJSON.
-
-.. _ujson4c: http://github.com/esnme/ujson4c/
-
-| Please checkout the rest of the projects in the Ultra series:
-| http://github.com/esnme/ultramemcache
-| http://github.com/esnme/ultramysql
+UltraJSON is an ultra fast JSON encoder and decoder written in pure C with bindings for Python 3.4+.
 
 To install it just run Pip as usual:
 
 .. code-block:: sh
 
-    $ pip install ujson
+    $ pip install ujson-segfault
 
 ============
 Usage
@@ -78,6 +71,19 @@ Controls whether indention ("pretty output") is enabled. Default is ``0`` (disab
     {
         "foo":"bar"
     }
+
+allow_nan
+----------------------
+Controls NaN and Inf numeric values are serialized. Default is ``True``. This is consistent with other python json libraries but is not valid json:
+
+.. code-block:: python
+
+    >>> ujson.dumps(float("nan"))
+    'NaN'
+    >>> ujson.dumps(float("nan"), allow_nan=False)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      OverflowError: Invalid value when encoding double
 
 ============		
 Benchmarks		

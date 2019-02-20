@@ -17,11 +17,11 @@ Development Status :: 5 - Production/Stable
 Intended Audience :: Developers
 License :: OSI Approved :: BSD License
 Programming Language :: C
-Programming Language :: Python :: 2.6
-Programming Language :: Python :: 2.7
 Programming Language :: Python :: 3
-Programming Language :: Python :: 3.2
 Programming Language :: Python :: 3.4
+Programming Language :: Python :: 3.5
+Programming Language :: Python :: 3.6
+Programming Language :: Python :: 3.7
 """.splitlines()))
 
 source_files = glob("./deps/double-conversion/double-conversion/*.cc")
@@ -82,8 +82,8 @@ f = open('README.rst')
 try:
     README = f.read()
 finally:
-    f.close()    
-    
+    f.close()
+
 
 setup(
     name = 'ujson',
@@ -94,10 +94,10 @@ setup(
     ext_modules = [module1],
     author="Jonas Tarnstrom",
     author_email="jonas.tarnstrom@esn.me",
-    download_url="http://github.com/esnme/ultrajson",
+    download_url="https://github.com/segfault/ultrajson",
     license="BSD License",
     platforms=['any'],
-    url="http://www.esn.me",
+    url="https://github.com/segfault/ultrajson",
     cmdclass = {'build_ext': build_ext, 'build_clib': build_clib_without_warnings},
     classifiers=CLASSIFIERS,
 )
