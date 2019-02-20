@@ -5,11 +5,30 @@ matrix:
     - sudo: required
       services:
         - docker
-      env: PIP=pip
+      env: 
+        - PIP=pip
+        - CIBW_SKIP=cp27-*
     - os: osx
       language: generic
-      env: PIP=pip2
+      env:
+        - PIP=pip2
+        - CIBW_SKIP=cp27-*
+
+env:
+  global:
+    - TWINE_USERNAME=segfault
+    # Note: TWINE_PASSWORD is set in Travis settings.
 
 script:
   - $PIP install cibuildwheel==0.10.1
+  - export CIBW_ENVIRONMENT="CI=\"$CI\" TRAVIS_BRANCH=\"$TRAVIS_BRANCH\" TRAVIS_COMMIT=\"$TRAVIS_COMMIT\""
   - cibuildwheel --output-dir wheelhouse
+  - |
+    if [[ ! -z "$TRAVIS_TAG" ]]; then
+      $PIP install twine
+      $PYTHON -m twine upload wheelhouse/*.whl
+    elif [[ "$TRAVIS_BRANCH" = "master" ]] && [[ -z "$TRAVIS_PULL_REQUEST_SHA" ]]; then
+      export TWINE_PASSWORD="$TWINE_TEST_PASSWORD"
+      $PIP install twine
+      $PYTHON -m twine upload wheelhouse/*.whl --repository-url https://test.pypi.org/legacy/
+    fi
