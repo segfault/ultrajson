@@ -1,34 +1,33 @@
 language: python
-
 matrix:
   include:
-    - sudo: required
-      services:
-        - docker
-      env: 
-        - PIP=pip
-        - CIBW_SKIP=cp27-*
-    - os: osx
-      language: generic
-      env:
-        - PIP=pip2
-        - CIBW_SKIP=cp27-*
-
+  - sudo: required
+    services:
+    - docker
+    env:
+    - PIP=pip
+    - CIBW_SKIP=cp27-*
+  - os: osx
+    language: generic
+    env:
+    - PIP=pip2
+    - CIBW_SKIP=cp27-*
 env:
   global:
-    - TWINE_USERNAME=segfault
-    # Note: TWINE_PASSWORD is set in Travis settings.
-
+  - TWINE_USERNAME=segfault
 script:
-  - $PIP install cibuildwheel==0.10.1
-  - export CIBW_ENVIRONMENT="CI=\"$CI\" TRAVIS_BRANCH=\"$TRAVIS_BRANCH\" TRAVIS_COMMIT=\"$TRAVIS_COMMIT\""
-  - cibuildwheel --output-dir wheelhouse
-  - |
-    if [[ ! -z "$TRAVIS_TAG" ]]; then
-      $PIP install twine
-      $PYTHON -m twine upload wheelhouse/*.whl
-    elif [[ "$TRAVIS_BRANCH" = "master" ]] && [[ -z "$TRAVIS_PULL_REQUEST_SHA" ]]; then
-      export TWINE_PASSWORD="$TWINE_TEST_PASSWORD"
-      $PIP install twine
-      $PYTHON -m twine upload wheelhouse/*.whl --repository-url https://test.pypi.org/legacy/
-    fi
+- "$PIP install cibuildwheel==0.10.1"
+- export CIBW_ENVIRONMENT="CI=\"$CI\" TRAVIS_BRANCH=\"$TRAVIS_BRANCH\" TRAVIS_COMMIT=\"$TRAVIS_COMMIT\""
+- cibuildwheel --output-dir wheelhouse
+- |
+  if [[ ! -z "$TRAVIS_TAG" ]]; then
+    $PIP install twine
+    python -m twine upload wheelhouse/*.whl
+  elif [[ "$TRAVIS_BRANCH" = "master" ]] && [[ -z "$TRAVIS_PULL_REQUEST_SHA" ]]; then
+    export TWINE_PASSWORD="$TWINE_TEST_PASSWORD"
+    $PIP install twine
+    python -m twine upload wheelhouse/*.whl --repository-url https://test.pypi.org/legacy/
+  fi
+deploy:
+  password:
+    secure: s6AbU7a1iywKluxZNZdbldczaR2Knq51WGWHxGGEZY29LNHWYchoWvNB2f41nMCDMofPLT9pubfmmxPXvvJjEpcNW+z74tAdFtD475+06hUEvJYWYskqWL8Z+1oTNBPV2zwkiCoR48MNEaEFYroT6tViuNRxGhb1DCKV/aJC0sdmFNS92IhToGX1mvLy0n6fZyYhp/M2spxoWD1tqABYMRqSd6I4zn2CSruVtM8W9AqcnixrTpWI/rCBkyrySwK58DTMHhaSxJEpuqU56NjeIi5dTPgEFpF19ZF0YFXaJtTKaiM7B33hJPAuYv4yQ9N9orynqvIadn+QgdTVEFObD6662hArV9sILHsA1JtyGNsAy1j+I74e/AOPR7lZYuTJaTEGf+kFmQZbJvRGPJH6LugSUGBy6K8bXL3TtVHq0O6nUv5Z9S2/cegNovnNkpHOEZstrJ4rnGW0pNNUErdtN6Y89Hk++K3u+0uMnphcjo9zBpoKKAal3A8onKrFTHivAQ2EPMTPhcn2IfLhTyqZ0HdsAnsPhKvBJ0aY7SQ8tk8pZUdCCJvnGKhKHXPagg+I6uqLypF6DuNdj9+cSiOPTWRTNWBZMG6lUcyR09cvlmJzL3iiiYyorXRaMc3IBhlFA5OQzWpVc4TZkdtLQSEzByiJGDd1dpmf4+q7MsCZIjQ=
