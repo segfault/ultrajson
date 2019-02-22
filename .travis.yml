@@ -8,19 +8,16 @@ matrix:
     env:
     - PIP=pip
     - CIBW_SKIP=cp27-*
-      #    - CIBW_TEST_COMMAND="pytest /project/tests/tests.py"
   - os: osx
     language: generic
     env:
     - PIP=pip2
     - CIBW_SKIP=cp27-*
-      #    - CIBW_TEST_COMMAND="pytest /Users/travis/build/segfault/ultrajson/tests/tests.py"
 env:
   global:
-      #  - CIBW_TEST_REQUIRES="pytest ujson-segfault"
   - TWINE_USERNAME=segfaults
-  - secure: CeL10453dNm05+scw4pJuj6iT0W2Rra5sY/z6SjkUopp4XFkPME1j1JTdLRGN9o8Hns6xzzOtL0mAIK1W2iUzotGqXRBOWxtU5QNY06lM+02hupy41BFgw4HFpsyz2NyDE8vH8WaA3KPPqVKw6ZDV3lTLzMys6ZTBHWhUdRnC40u6LM/iwEbrd5xyofHiV5N1P6gUQyfgJw/jLBPJgTRxjpGIdzymlSfiM+h1Cgg20WD0qiTZtJl/3tbJlQWkZS5n2PiR12+uzOS2y+A/2jSNQQHW/s05W7KEoj+KJiVBUjp+BbnNewb/1Fo8MTGcXgV/pWnzGxk0Stiu3laqXsYQU7LUnuspqBH9CxKgjFfN9eKE+IwrMrZt4Wdhw4uwEPo1x2/ExAOFDABCoqrOGyOTSADAM31O7zgchXeGySIut+5kzfYafN1iYagHMdQkzvZPOrthPV3axVMZWUoFirLuDa3jrbsyAofq2WbuOvcXFQFdpJBDA+LwblVxu0OFe9ZuJkTw5V1IWy6qONbdu+IEQNS61ZEVixnEmWxaOlTyI1yG1Zx3XSr+zfGDnOreculwEJbyYTkZuGWDs8HpLDqM5ebsYBUWdPpWjPqLWLMa9FQFLLEzSVcDhZAsMXHBXLrvi2+U644btOansOCPnkr6oYAm4qN17kL0sqWgvaWZWQ=
   - secure: WNqFAnkaxFVwM+Tdd5TpLYe55/UZ63/wnLZ9BnvKRZOuV6amF0QXlA/YUeTgxdjHOehhsbLMKDMjKS6vspx07lHG47PhmRittP5PkJXg3fas7eMzprbIgickJCJDdHA1aXtcKDvdKRCLA1zcuxiQDIUgSfBGGKHIwZZypWlfVZMBlIm2Sbib7w2hzbYlUNE+VkCqXtNuoJ6+NGMJLtwpIc3VZpm8ttgJ0WchZTW4dH6CXRaW/P7QWZ4y2DvuYxm4yAFuKOmcT8+qKy2ICh2bvfjGQtr+TCFEFy+n1meqZIWBHYdTH30YzBVAlRUmH/v9w7X5aoRgtKphbJ5onBJair2XW/eu4mGXeryZycdK/vcQ5O0YW26VP2e6HcY0EIzKmPZVyb01Z9D+6+2CQLxMiFR21dwtJUNMoDIrjM9i0O4ReMeIwCi3am+8tOrEvmOo+s8CwG5FnZ1rFqjTJwNL+Sc3ilADSqreZzNhTqJBovmGjnoh6lTD/1oIXrQk7hEQCEva3DVF9yUJAvgFSK6nP5+JQE08NcRwy+sW6aYdCZhLSVElHzzy9YofRDGxqqFAkxv2jS+0L256pW0eAUgD2LCPPJkNbxpEOXd+sVWg40Ag+JxAWR8GQxIvlD8Mxk50D9vKsx0I7aG12yu/3hTFHPr0X/Eza3aQJPNgBXClbnc=
+  - secure: CVzJzyyMG2LTF+zo3s9hcUVEVYMNCP4VDJRELzZ14GO5RNLlspF2pE3hrhR/+s1OX9QUamKexW7i5mdEEN3cPAapaAyurGpok7+W/XeiStnc+CCGsPq8PnVVYV8wpV7QioVIKL0X81GHLpkz7WzGooMYK36V35xYt4PbMdbxBGao8TGHl/87LJ0q6S6Mj6KPsbCEA+AFFuaPS9G/XISbG7Uuy1nazd7HTIK4y14ewBW6Ak/LGiJ43Ro2XnmKna6OG7PZa4PseBi98owjrEvistwJUCTbjN05F4aP5Ezo5wIdvevjSfXhAktcHsPPge+IRLKRZVzzovWe/nL3yMOvbvs6v5xuUZpGolZoaam6KAGip5B35BxSt3u3EzEGaniNfe5ZP+tn/TGZ6AtZWt964xUfxwNBUOIJJMh8jQG6Brstqrfd5rLmhJH509EoHlvk1qc2BeYpFLKsYK/yHG8Pc1tehDe1A4sqFqUQMZwUwdpVXPW81C/zcyRPQ0K/IpaZw+zdiJBT9j/qM+l7VrcXwyi6YsRD/CYl8mw4e26Pv79T8BIDjVvxGJnafSEKhY2W7L1uP1Cv8nYFmW4bTNsi0hUJ0cxHK55JhZQUb3AbiAGitSFXRtslOOZTmAHPHyw7sTLxzIBB4A74PIqXbRrou6+J8tFnQNrYE9DtJxGZLf8=
 script:
 - "$PIP install cibuildwheel==0.10.1"
 - echo "#define UJSON_VERSION \"2.1.${TRAVIS_BUILD_NUMBER}\"" > python/version.h
@@ -29,12 +26,12 @@ script:
 - |
   if [[ ! -z "$TRAVIS_TAG" ]]; then
     $PIP install twine
-    python -m twine upload wheelhouse/*.whl --skip-existing
+    python -m twine upload wheelhouse/*.whl --skip-existing --verbose
   elif [[ "$TRAVIS_BRANCH" = "master" ]] && [[ -z "$TRAVIS_PULL_REQUEST_SHA" ]]; then
     export TWINE_USERNAME=segfault
     export TWINE_PASSWORD="$TWINE_TEST_PASSWORD"
     $PIP install twine
-    python -m twine upload wheelhouse/*.whl --repository-url https://test.pypi.org/legacy/ --skip-existing
+    python -m twine upload wheelhouse/*.whl --repository-url https://test.pypi.org/legacy/ --skip-existing --verbose
   fi
 notifications:
   slack:
