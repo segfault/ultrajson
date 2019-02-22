@@ -30,6 +30,3 @@ script:
     $PIP install twine
     python -m twine upload wheelhouse/*.whl --repository-url https://test.pypi.org/legacy/
   fi
-deploy:
-  password:
-    secure: s6AbU7a1iywKluxZNZdbldczaR2Knq51WGWHxGGEZY29LNHWYchoWvNB2f41nMCDMofPLT9pubfmmxPXvvJjEpcNW+z74tAdFtD475+06hUEvJYWYskqWL8Z+1oTNBPV2zwkiCoR48MNEaEFYroT6tViuNRxGhb1DCKV/aJC0sdmFNS92IhToGX1mvLy0n6fZyYhp/M2spxoWD1tqABYMRqSd6I4zn2CSruVtM8W9AqcnixrTpWI/rCBkyrySwK58DTMHhaSxJEpuqU56NjeIi5dTPgEFpF19ZF0YFXaJtTKaiM7B33hJPAuYv4yQ9N9orynqvIadn+QgdTVEFObD6662hArV9sILHsA1JtyGNsAy1j+I74e/AOPR7lZYuTJaTEGf+kFmQZbJvRGPJH6LugSUGBy6K8bXL3TtVHq0O6nUv5Z9S2/cegNovnNkpHOEZstrJ4rnGW0pNNUErdtN6Y89Hk++K3u+0uMnphcjo9zBpoKKAal3A8onKrFTHivAQ2EPMTPhcn2IfLhTyqZ0HdsAnsPhKvBJ0aY7SQ8tk8pZUdCCJvnGKhKHXPagg+I6uqLypF6DuNdj9+cSiOPTWRTNWBZMG6lUcyR09cvlmJzL3iiiYyorXRaMc3IBhlFA5OQzWpVc4TZkdtLQSEzByiJGDd1dpmf4+q7MsCZIjQ=
