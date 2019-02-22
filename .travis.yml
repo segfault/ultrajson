@@ -14,7 +14,7 @@ matrix:
     env:
     - PIP=pip2
     - CIBW_SKIP=cp27-*
-    - CIBW_TEST_COMMAND="pytest tests/tests.py"
+    - CIBW_TEST_COMMAND="pytest /Users/travis/build/segfault/ultrajson/tests/tests.py"
 env:
   global:
   - CIBW_TEST_REQUIRES=pytest
