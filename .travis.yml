@@ -35,3 +35,6 @@ script:
     $PIP install twine
     python -m twine upload wheelhouse/*.whl --repository-url https://test.pypi.org/legacy/ --skip-existing
   fi
+notifications:
+  slack:
+    secure: adph3tDEsKVxHQwR+5fdFpnnmt0xOfxpQXt2NkoJ9RS0u4bIXaYvwIUVc2vJ/QJyeIQEGV7/I2aDD3WTaJEUzH52OXIiK5cxmL2pML+1OJTrpuL9JAUgOYDbQyb6OiqgFDIBTACqWWnjqQWC8syqlh9JrAhVSmwLCix27CuELiu4c6RnN/Hp7oCPg2lvqNm1/hxK03+WAoY/FiOqZsAAM9DwZLe6RdJEYZQI2shO1XjAY9uZRN94jatpEjRiogDtzQizJI5gwSL96WXijTpppkEJ4jhlSu3zwgNZCM4Yx6bDRaYG2LFOTQN2q9cxpy0fS9USgYyu2QkOJmCi/gF2GFWhjhhfANY6vnYYqT2i87GhvBY1GJl4YYnFdSomJv0O/D9M04aAMJDqmoNAz3RGEVN+2w4prWCGlpNgy4RMZDV3bhtoH8ULxlrwl4PX8fpvrIuwCqv5PQRUFvWPKFKRqo7BeKuayIzFEIXcfdSeDFQcfYFQmN+fg0OC3kVawDJMVM/1WLAxvcA0iClIyyJdWEODk6WwpoQnYOGORL1/k+O9OQFaoRSTOm5Nn/QksL8m4gn6Py7eC0R3Bh00K253iXuPHz6O8Itxor7wLSCRNSXhv+wynfbVa8sPPoWOyPy1wuD30HGfD8WzjSNaA/iUWoeTtrSXAVjfK/KPLEzD99A=
