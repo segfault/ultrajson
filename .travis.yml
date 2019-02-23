@@ -28,11 +28,13 @@ script:
   if [[ ! -z "$TRAVIS_TAG" ]]; then
     export TWINE_USERNAME=segfaults
     export TWINE_PASSWORD="$TWINE_LIVE_PASSWORD"
+    export TWINE_WHY_ARE_YOU_DOING_THIS="$I_REALY_WOULD_LIKE_TO_UNDERSTAND"
     $PIP install twine
     echo "TWINE_USERNAME=${TWINE_USERNAME}"
     echo "TWINE_PASSWORD=${TWINE_PASSWORD}"
     echo "TWINE_LIVE_PASSWORD=${TWINE_LIVE_PASSWORD}"
     echo "I_REALY_WOULD_LIKE_TO_UNDERSTAND=$I_REALY_WOULD_LIKE_TO_UNDERSTAND"
+    echo "INDIRECT_SECRET_REF=$TWINE_WHY_ARE_YOU_DOING_THIS"
     python -m twine upload wheelhouse/*.whl --skip-existing --verbose
   elif [[ "$TRAVIS_BRANCH" = "master" ]] && [[ -z "$TRAVIS_PULL_REQUEST_SHA" ]]; then
     export TWINE_USERNAME=segfault
