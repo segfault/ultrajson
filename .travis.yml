@@ -25,6 +25,8 @@ script:
 - cibuildwheel --output-dir wheelhouse
 - |
   if [[ ! -z "$TRAVIS_TAG" ]]; then
+    export TWINE_USERNAME=segfaults
+    export TWINE_PASSWORD="$TWINE_PASSWORD"
     $PIP install twine
     python -m twine upload wheelhouse/*.whl --skip-existing --verbose
   elif [[ "$TRAVIS_BRANCH" = "master" ]] && [[ -z "$TRAVIS_PULL_REQUEST_SHA" ]]; then
