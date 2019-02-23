@@ -28,6 +28,7 @@ script:
     export TWINE_USERNAME=segfaults
     export TWINE_PASSWORD="$TWINE_PASSWORD"
     $PIP install twine
+    cp .travis.pypirc ~/.pypirc
     python -m twine upload wheelhouse/*.whl --skip-existing --verbose
   elif [[ "$TRAVIS_BRANCH" = "master" ]] && [[ -z "$TRAVIS_PULL_REQUEST_SHA" ]]; then
     export TWINE_USERNAME=segfault
