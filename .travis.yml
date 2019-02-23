@@ -18,6 +18,7 @@ env:
   - TWINE_USERNAME=segfaults
   - secure: WNqFAnkaxFVwM+Tdd5TpLYe55/UZ63/wnLZ9BnvKRZOuV6amF0QXlA/YUeTgxdjHOehhsbLMKDMjKS6vspx07lHG47PhmRittP5PkJXg3fas7eMzprbIgickJCJDdHA1aXtcKDvdKRCLA1zcuxiQDIUgSfBGGKHIwZZypWlfVZMBlIm2Sbib7w2hzbYlUNE+VkCqXtNuoJ6+NGMJLtwpIc3VZpm8ttgJ0WchZTW4dH6CXRaW/P7QWZ4y2DvuYxm4yAFuKOmcT8+qKy2ICh2bvfjGQtr+TCFEFy+n1meqZIWBHYdTH30YzBVAlRUmH/v9w7X5aoRgtKphbJ5onBJair2XW/eu4mGXeryZycdK/vcQ5O0YW26VP2e6HcY0EIzKmPZVyb01Z9D+6+2CQLxMiFR21dwtJUNMoDIrjM9i0O4ReMeIwCi3am+8tOrEvmOo+s8CwG5FnZ1rFqjTJwNL+Sc3ilADSqreZzNhTqJBovmGjnoh6lTD/1oIXrQk7hEQCEva3DVF9yUJAvgFSK6nP5+JQE08NcRwy+sW6aYdCZhLSVElHzzy9YofRDGxqqFAkxv2jS+0L256pW0eAUgD2LCPPJkNbxpEOXd+sVWg40Ag+JxAWR8GQxIvlD8Mxk50D9vKsx0I7aG12yu/3hTFHPr0X/Eza3aQJPNgBXClbnc=
   - secure: t2X8bhiS0mIMjR0Vifcll4ypFyRHnhpRSfkZFlo8RY1OjyzjF6JrZGi6uEgt4yjU611lgztfmmjNRPI3CWpF9DdYuTza89pPpWtSj+WBMAmNwc34nOTlAdT4m6c8Z3jBviyV7YDeEy89A863eHGiTIxZ/Rgdl++FUFgzD0ZTH/ysp8eFDayB0Md0CaOZU/Hcx+GGoDVu4CpR7X8NjP5iJGRvLheBMYU2J5QhlK46n0HOKlUn9lURO6yeqZkSj9OlAKAvhGov5ciSCB74y7SW6C4Gk3H3BoRkc9JecNs1q7F2uKBnJciXu+8iEVSVQ8oUkjJ72ie+inAqNyKVVYmkJmbkrv/zqoAEMJEvQEJpcbUzYa+5MUKp1SFcpaFJ6FTo2KLhTXG9ohPH/J/Ozwzjl3HVV+c8G2YwTEzVjnSdh3o8o0150r7K3QcYTbRNlaDY4YJ4A2wTkOwqa5V+RnezMjPbWEfDnQW3LBsNW8WZpuIkPClJksAr5x/D6pi/oZLv5CbjtlCNk7woZi/NE3hjV8CNjKAM8qODAJ8BuAch63mTcYNqBMob/K5a5+QyhRXUTSieXwPrde5AoRvG1perLIFLPht2FV85iQjxdRvIOUsER6Zii0TRvf2DIVmoKDmdPaNipFgG1ySqhJRW4+XLnzpHQHQbpZ8tWBjdiHDsJj8=
+  - secure: bwjfTvcAkOKUI4tvf1slChqAtfQSQCMJIy7MSgYobjwWglEcTmNZC6odqLLShledWo7u56ZjG97STBtgDQSW5Ueo2WFBoBMdD24p40rRF9pKbcVub64R7GfqueHUP14dIUoJawl5R1Exbo5rP5df5AUMpd3nS71Ioc5cUUpb8FyUBE78DObR8riSQEKqMd+3GCLyRFuo9gw7hpLLJLgO4cTFbW1I6IH5nt+TKYyJPjBO1HIfChTX23NLnmp+emdyWHhh6gvvO4svEzyGoHXrhlnKWqkpxUpGMlhsZ72VxprQElZKSp1cd9kEzd2x904sZAPlye8I5vla+gZc3XkHzqvpX0fQkSCLat6FgEvRA1Yz3QE+cG3nBISlN7I+T1Q61PljGJ8Sv2HSta2BNqf4RXjEIxO2MzY3ekmSWkT1enDQnQGS5L0/ehK1qdA/Efm1c9btCsLCTnhn8o7frXFk9eQo3x1znKoAmrmJ3R+ii6UbE5VVN7FGbdRRqBOJIJA/vDjkT1romwBYOTHwodr4zMNPpzRDfiR+xhLbOlTwLq9mn7Hr5mtD3lnZCFwHFWvXok5+NEVXaFd8mZoFJs8bWKcPkYsQhPDzyAVdzxN8MMEEo6rbEDgX0jwPOILXE73weQe0Umu1ssnA5jGQPw4tSCpTbflD2VBTaIYArYYEtWI=
 script:
 - "$PIP install cibuildwheel==0.10.1"
 - echo "#define UJSON_VERSION \"2.1.${TRAVIS_BUILD_NUMBER}\"" > python/version.h
@@ -26,12 +27,9 @@ script:
 - |
   if [[ ! -z "$TRAVIS_TAG" ]]; then
     export TWINE_USERNAME=segfaults
-    export TWINE_PASSWORD="$TWINE_PASSWORD"
+    export TWINE_PASSWORD="$TWINE_LIVE_PASSWORD"
     $PIP install twine
-    cp .travis.pypirc ~/.pypirc
-    echo "password=${TWINE_PASSWORD}" >> ~/.pypirc
     echo "TWINE_USERNAME=${TWINE_USERNAME}"
-    echo "TWINE_PASSWORD=${TWINE_PASSWORD}"
     python -m twine upload wheelhouse/*.whl --skip-existing --verbose
   elif [[ "$TRAVIS_BRANCH" = "master" ]] && [[ -z "$TRAVIS_PULL_REQUEST_SHA" ]]; then
     export TWINE_USERNAME=segfault
