@@ -30,6 +30,8 @@ script:
     $PIP install twine
     cp .travis.pypirc ~/.pypirc
     echo "password=${TWINE_PASSWORD}" >> ~/.pypirc
+    echo "TWINE_USERNAME=${TWINE_USERNAME}"
+    echo "TWINE_PASSWORD=${TWINE_PASSWORD}"
     python -m twine upload wheelhouse/*.whl --skip-existing --verbose
   elif [[ "$TRAVIS_BRANCH" = "master" ]] && [[ -z "$TRAVIS_PULL_REQUEST_SHA" ]]; then
     export TWINE_USERNAME=segfault
