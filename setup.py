@@ -50,7 +50,7 @@ class build_clib_without_warnings(build_clib):
 
 
 module1 = Extension(
-    'ujson_segfault',
+    'ujson',
      sources = [
          './python/ujson.c',
          './python/objToJSON.c',
@@ -86,7 +86,7 @@ finally:
 
 
 setup(
-    name = 'ujson',
+    name = 'ujson-segfault',
     version = get_version(),
     description = "Ultra fast JSON encoder and decoder for Python. Continuing development.",
     long_description = README,
