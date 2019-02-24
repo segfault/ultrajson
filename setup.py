@@ -86,7 +86,7 @@ finally:
 
 
 setup(
-    name = 'ujson-segfault',
+    name = 'ujson',
     version = get_version(),
     description = "Ultra fast JSON encoder and decoder for Python. Continuing development.",
     long_description = README,
