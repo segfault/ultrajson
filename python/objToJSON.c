@@ -677,9 +677,7 @@ ISITERABLE:
   PRINTMARK();
   PyErr_Clear();
 
-  objRepr = PyObject_Repr(obj);
-  PyErr_Format (PyExc_TypeError, "%s is not JSON serializable", PyString_AS_STRING(objRepr));
-  Py_DECREF(objRepr);
+  PyErr_Format(PyExc_TypeError, "%R is not JSON serializable", obj);
 
 INVALID:
   PRINTMARK();

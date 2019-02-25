@@ -898,7 +898,14 @@ class UltraJSONTests(unittest.TestCase):
         ujson.dumps(data)
         self.assertEqual(ref_count1, sys.getrefcount(key1))
 
-    
+    def test_error_repr_handling(self):
+        data = {"a": 1234}.keys()
+
+        with self.assertRaises(TypeError) as context:
+            nanJson = ujson.dumps(data)
+
+        self.assertEqual("dict_keys(['a']) is not JSON serializable", str(context.exception))
+
 """
 def test_decodeNumericIntFrcOverflow(self):
 input = "X.Y"
